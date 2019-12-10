@@ -1,38 +1,24 @@
 <template>
   <div id="app">
     <div>
-      <Summary v-bind:income="income" v-bind:expenses="expenses" />
-      <Entryform v-bind:income="income" v-bind:expenses="expenses" />
-      <Log v-bind:income="income" v-bind:expenses="expenses" />
+      <overview />
+      <entry-form />
+      <log />
     </div>
   </div>
 </template>
 
 <script>
-import Summary from './summary.vue';
-import Entryform from './entry-form.vue';
-import Log from './log.vue';
+import overview from "./overview.vue";
+import entryForm from "./entry-form.vue";
+import log from "./log.vue";
 
 export default {
-  
-  name: 'App',
-  data:function(){
-    return {
-      income: [],
-      expenses: [],
-      total: 0,      
-    }
-  },
-  components: { 
-    Summary,
-    Entryform,
-    Log
-   },
-  template: '<App />',
-
-}
+  name: "App",
+  components: {
+    overview,
+    entryForm,
+    log
+  }
+};
 </script>
-
-<style>
-
-</style>

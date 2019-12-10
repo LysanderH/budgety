@@ -13,12 +13,7 @@
             placeholder="Add description"
             v-model="description"
           />
-          <input
-            type="number"
-            class="add__value"
-            placeholder="Value"
-            v-model="value"
-          />
+          <input type="number" class="add__value" placeholder="Value" v-model="value" min="0" />
           <button class="add__btn" type="submit">
             <i class="ion-ios-checkmark-outline"></i>
           </button>
@@ -29,22 +24,19 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  name: "Entryform",
-    props:[        
-        'income',
-        'expenses'
-    ],
-  data: function(){
-      return {
-    posOrNeg: "inc",
-    description: "",
-    value: 0
-    }
+  name: "entry-form",
+  data: function() {
+    return {
+      posOrNeg: "inc",
+      description: "",
+      value: 0
+    };
   },
   methods: {
     stockValues(e) {
-      console.log("it works");
       if (this.posOrNeg === "inc") {
         this.income.push({ text: this.description, value: Number(this.value) });
       } else {
@@ -57,6 +49,10 @@ export default {
       this.value = 0;
       this.description = "";
     }
+  },
+  computed: {
+    ...mapState(["income"]),
+    ...mapState(["expenses"])
   }
 };
 </script>
